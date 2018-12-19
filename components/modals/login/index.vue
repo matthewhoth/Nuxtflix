@@ -3,12 +3,12 @@
     <div class="modal_wrapper">
       <div class="modal_container" style="min-width: 35rem" v-click-outside="onClickOutside">
         <div class="form_header">
-          <span>Register Form</span>
+          <span>Login Form</span>
           <div class="modal_close">
-            <i class="icon-circle-rounded-full click click_link" @click="$emit('registerModal')"></i>
+            <i class="icon-circle-rounded-full click click_link" @click="$emit('loginModal')"></i>
           </div>
         </div>
-        <form class="padding_all--2" @submit.prevent="submitRegister">
+        <form class="padding_all--2" @submit.prevent="submitLogin">
           <div class="form_group">
             <div class="form_control">
               <div class="form_box">
@@ -24,6 +24,7 @@
                 >
                 <label for="username">Username</label>
               </div>
+              <div class="form_error--msg" v-if="usernameValidation">Username is wrong!</div>
             </div>
             <div class="form_control">
               <div class="form_box">
@@ -39,28 +40,14 @@
                 >
                 <label for="password">Password</label>
               </div>
-            </div>
-            <div class="form_control">
-              <div class="form_box">
-                <input
-                  type="password"
-                  id="repassword"
-                  v-model="repassword"
-                  :class="{'focus': repassword.length > 0}"
-                  autocomplete="new-repassword"
-                  minlength="6"
-                  maxlength="30"
-                  required
-                >
-                <label for="repassword">Repeat Password</label>
-              </div>
+              <div class="form_error--msg" v-if="passwordValidation">Password is wrong!</div>
               <div
-                v-if="validateRePassword && repassword.length > 0"
                 class="form_error--msg"
-              >Password doesn't match!</div>
+                v-if="!hasAccount"
+              >You do not have account yet! Please register!</div>
             </div>
             <div class="form_box margin_add--top-2">
-              <button type="submit" :disabled="validateRePassword" class="btn">Register</button>
+              <button type="submit" :disabled="!validateForm" class="btn">Login</button>
             </div>
           </div>
         </form>
@@ -70,6 +57,7 @@
 </template>
 
 <script>
+import Cookies from "js-cookie";
 import clickOutside from "@/directives/clickOutside";
 export default {
   directives: {
@@ -77,16 +65,16 @@ export default {
   },
   data() {
     return {
+      hasAccount: true,
       username: "",
+      usernameValidation: false,
       password: "",
-      repassword: ""
+      passwordValidation: false
     };
   },
   computed: {
-    validateRePassword() {
-      return this.password.length > 0
-        ? this.password !== this.repassword
-        : true;
+    validateForm() {
+      return this.username.length > 0 && this.password.length > 0;
     }
   },
   mounted() {
@@ -94,16 +82,25 @@ export default {
   },
   methods: {
     onClickOutside() {
-      this.$emit("registerModal");
+      this.$emit("loginModal");
     },
-    submitRegister() {
-      console.log(this.validateRePassword);
-      let data = {
-        username: this.username,
-        password: this.password
-      };
-      this.$store.dispatch("registerAccount", data);
-      this.$emit("registerModal");
+    submitLogin() {
+      this.usernameValidation = false;
+      this.passwordValidation = false;
+      const accountDetails = Cookies.get("accountDetails");
+      if (accountDetails === undefined) {
+        this.hasAccount = false;
+      } else {
+        let checkAccount = JSON.parse(accountDetails);
+        if (checkAccount.username !== this.username) {
+          this.usernameValidation = true;
+        } else if (checkAccount.password !== this.password) {
+          this.passwordValidation = true;
+        } else {
+          this.$store.dispatch("setUser", this.username);
+          this.$emit("loginModal");
+        }
+      }
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="$store.state.user">Get Username {{JSON.parse($store.state.user).username}}</div>
+    <div v-if="$store.state.user">Get Username {{$store.state.user}}</div>
     <div @click="setUser()">Register</div>
     <div @click="$store.dispatch('setUser', '')">Clear Local Storage</div>
     <div></div>
