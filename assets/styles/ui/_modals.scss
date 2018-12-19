@@ -1,4 +1,18 @@
-.modal_fullscreen{
+.modal_overlay {
   z-index: $z_index-modal;
-  @include fullscreen(fixed, 0, 0, 0 ,0);
+  background-color: rgba(0, 0, 0, 0.75);
+  @include fullscreen(fixed, 0, 0, 0, 0);
+}
+
+.modal_wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal_container {
+  background-color: rgb(180, 0, 0);
+  padding: 2rem;
 }
