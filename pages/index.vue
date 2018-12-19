@@ -1,9 +1,26 @@
 <template>
   <div>
-    <div v-if="$store.state.user">Get Username {{$store.state.user}}</div>
-    <div @click="setUser()">Register</div>
-    <div @click="$store.dispatch('setUser', '')">Clear Local Storage</div>
-    <div></div>
+    <no-ssr>
+      <div v-if="!$store.state.user" id="welcome">
+        <div>
+          <div class="welcome_title">
+            Welcome to
+            <span>
+              Nuxt
+              <strong>Flix</strong>
+            </span>
+          </div>
+          <p>
+            Please
+            <strong>register</strong> and
+            <strong>login</strong> to rate movies!
+          </p>
+        </div>
+      </div>
+      <div v-else>
+        <div>Get Username {{$store.state.user}}</div>
+      </div>
+    </no-ssr>
   </div>
 </template>
 
