@@ -1,0 +1,26 @@
+//Uncomment what you need or add what is missing (Follow import ordering from styles.scss)
+//@import "~assets/styles/variables/variables";
+@import "~assets/styles/variables/colors";
+//@import "~assets/styles/helpers/mixins";
+//@import "~assets/styles/layout/typography";
+
+$navbar_bg: darken($primary_color_dark, 5%);
+
+#navbar{
+  background-color: $navbar_bg;
+  height: 5rem;
+  line-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  margin-left: 2rem;
+  font-size: 1.6rem;
+  color: $secondary_color_dark;
+  i{
+    font-size: 2.4rem;
+    top: -7px;
+  }
+}

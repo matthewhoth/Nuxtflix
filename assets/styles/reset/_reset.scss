@@ -1,0 +1,61 @@
+html, body, h1, h2, h3, h4, h5, h6, p, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+button{
+  border: none;
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  color: initial;
+  text-decoration: none;
+}
+
+input, textarea, select{
+  border: none;
+  &:required, &:invalid, &:focus{
+    @include box-shadow(none);
+  }
+
+}
+
+[type="search"] {
+  -webkit-appearance: textfield;
+}
+
+/* Change the white to any color ;) */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 35px $secondary_color_light inset;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color: $font_primary_dark !important;
+}
+
+select {
+  /* for Firefox */
+  -moz-appearance: none;
+  /* for Chrome */
+  -webkit-appearance: none;
+}
+
+/* For IE10 */
+select::-ms-expand {
+  display: none;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}

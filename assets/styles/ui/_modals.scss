@@ -1,0 +1,4 @@
+.modal_fullscreen{
+  z-index: $z_index-modal;
+  @include fullscreen(fixed, 0, 0, 0 ,0);
+}

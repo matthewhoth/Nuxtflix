@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700');
+$font_style_primary: 'Poppins', sans-serif;
+
+// Desc: Font Size, Weight, Line Height, Letter Spacing (If values are not passed it will use default values)
+@mixin fontSWHS($fontSize: 1.4rem, $fontWeight: 400, $fontLineHeight: initial, $fontSpacing: initial) {
+  // Normal font scale
+  $font_scale: 1;
+  font-size: $font_scale * $fontSize;
+  font-weight: $fontWeight;
+  line-height: $fontLineHeight;
+  letter-spacing: $fontSpacing;
+   //Change font scale for wide desktops
+  //@media only screen and (min-width: 1441px) {
+  //  $font_wide_desktop_scale: 1.15;
+  //  font-size: $font_wide_desktop_scale * $fontSize;
+  //  font-weight: $fontWeight;
+  //  line-height: $fontLineHeight;
+  //  letter-spacing: $fontSpacing;
+  //}
+  // Change font scale for mobile
+  //@media only screen and (max-width: 576px) {
+  //  $font_mobile_scale: 0.75;
+  //  font-size: $font_mobile_scale * $fontSize;
+  //  font-weight: $fontWeight;
+  //  line-height: $fontLineHeight;
+  //  letter-spacing: $fontSpacing;
+  //}
+}
+
+$font_color: $primary_color_light;
+
+html {
+  font-family: $font_style_primary !important;
+  font-size: 62.5% !important; // 1 rem = 10 px
+  /* Better Font Rendering */
+  @include fontSmoothing;
+}
+
+body{
+  color: $font_color;
+  @include fontSWHS(1.4rem, 400, initial, initial);
+}
+
+button, input, select, textarea, a, p, option{
+  font-family: $font_style_primary;
+}
+
+p{
+  @include fontSWHS(1.4rem, 400, 2rem, initial);
+}

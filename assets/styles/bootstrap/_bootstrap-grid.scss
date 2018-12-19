@@ -1,0 +1,40 @@
+/*!
+ * Bootstrap 4.0.0-alpha.6 (grid and responsive utilities)
+ * GitHub: https://github.com/dmhendricks/bootstrap-grid-css
+ * License: MIT (https://github.com/twbs/bootstrap/blob/v4-dev/LICENSE)
+ * Credits: Twitter, Inc. & The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+ */
+
+// Includes relevant variables and mixins for the flexbox grid
+// system, as well as the generated predefined classes (e.g., `.col-sm-4`).
+
+//
+// Box sizing, responsive, and more
+//
+
+@at-root {
+  @-ms-viewport { width: device-width; }
+}
+
+//
+// Variables
+//
+
+@import "variables";
+
+//
+// Grid mixins
+//
+
+.bootstrap-wrapper {
+  width: 100%;
+
+  @import "mixins/breakpoints";
+  @import "mixins/grid-framework";
+  @import "mixins/grid";
+
+  @import "custom";
+
+  @import "grid";
+
+}
