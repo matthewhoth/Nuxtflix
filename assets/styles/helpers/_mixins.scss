@@ -4,6 +4,11 @@
   border-radius: $border-radius;
 }
 
+@mixin positionSticky {
+  position: sticky;
+  position: -webkit-sticky;
+}
+
 @mixin transform($transform) {
   -webkit-transform: $transform;
   -moz-transform: $transform;
@@ -12,13 +17,13 @@
   transform: $transform;
 }
 
-@mixin animation($animation){
+@mixin animation($animation) {
   -webkit-animation: $animation;
   -o-animation: $animation;
   animation: $animation;
 }
 
-@mixin appearance($appearance){
+@mixin appearance($appearance) {
   -webkit-appearance: $appearance;
   -moz-appearance: $appearance;
   appearance: $appearance;
@@ -62,7 +67,13 @@
   box-shadow: $box-shadow;
 }
 
-@mixin fullscreen($position: relative, $top: initial, $right: initial, $bottom: initial, $left: initial){
+@mixin fullscreen(
+  $position: relative,
+  $top: initial,
+  $right: initial,
+  $bottom: initial,
+  $left: initial
+) {
   position: $position;
   top: $top;
   right: $right;
@@ -76,38 +87,38 @@
 }
 
 // Font Weight Mixins by name
-@mixin fontThin{
+@mixin fontThin {
   font-weight: 100;
 }
 
-@mixin fontExtraLight{
+@mixin fontExtraLight {
   font-weight: 200;
 }
 
-@mixin fontLight{
+@mixin fontLight {
   font-weight: 300;
 }
 
-@mixin fontRegular{
+@mixin fontRegular {
   font-weight: 400;
 }
 
-@mixin fontMedium{
+@mixin fontMedium {
   font-weight: 500;
 }
-@mixin fontSemiBold{
+@mixin fontSemiBold {
   font-weight: 600;
 }
 
-@mixin fontBold{
+@mixin fontBold {
   font-weight: 700;
 }
 
-@mixin fontExtraBold{
+@mixin fontExtraBold {
   font-weight: 800;
 }
 
-@mixin fontBlack{
+@mixin fontBlack {
   font-weight: 900;
 }
 
@@ -123,18 +134,34 @@
 
 // Gradient Mixins
 
-@mixin gradientTopToBottom($top, $bottom){
+@mixin gradientTopToBottom($top, $bottom) {
   background: $top; /* Old browsers */
   background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, $top 0%,$bottom 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, $top 0%,$bottom 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -webkit-linear-gradient(
+    top,
+    $top 0%,
+    $bottom 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    $top 0%,
+    $bottom 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 ); /* IE6-9 */
 }
 
-@mixin gradientLeftToRigght($left, $right){
+@mixin gradientLeftToRigght($left, $right) {
   background: $left; /* Old browsers */
   background: -moz-linear-gradient(top, $left 0%, $right 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, $left 0%,$right 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, $left 0%,$right 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -webkit-linear-gradient(
+    top,
+    $left 0%,
+    $right 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    $left 0%,
+    $right 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$left', endColorstr='$right',GradientType=0 ); /* IE6-9 */
 }

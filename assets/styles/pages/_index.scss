@@ -1,0 +1,47 @@
+//Uncomment what you need or add what is missing (Follow import ordering from styles.scss)
+@import "~assets/styles/animations/keyframes";
+//@import "~assets/styles/variables/variables";
+@import "~assets/styles/variables/colors";
+//@import "~assets/styles/helpers/mixins";
+//@import "~assets/styles/layout/typography";
+
+#welcome {
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  svg {
+    max-width: 30rem;
+    height: auto;
+  }
+  .welcome_title {
+    margin-top: 2rem;
+    font-size: 4rem;
+    line-height: 5rem;
+    span {
+      color: $secondary_color_dark;
+      i {
+        top: -0.9rem;
+        color: $state_warning_color;
+      }
+    }
+  }
+  p {
+    margin-top: 2rem;
+  }
+}
+
+.popcorn {
+  -webkit-animation: mover 1s infinite alternate;
+  animation: mover 1s infinite alternate;
+}
+
+.popcorn1 {
+  -webkit-animation: mover 1s infinite alternate;
+  animation: mover 1s infinite alternate;
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -o-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
