@@ -22,7 +22,10 @@
                   maxlength="30"
                   required
                 >
-                <label for="username">Username</label>
+                <label for="username">
+                  Username
+                  <span class="form_required">*</span>
+                </label>
               </div>
             </div>
             <div class="form_control">
@@ -37,7 +40,10 @@
                   maxlength="30"
                   required
                 >
-                <label for="password">Password</label>
+                <label for="password">
+                  Password
+                  <span class="form_required">*</span>
+                </label>
               </div>
             </div>
             <div class="form_control">
@@ -52,7 +58,9 @@
                   maxlength="30"
                   required
                 >
-                <label for="repassword">Repeat Password</label>
+                <label for="repassword">Repeat Password
+                  <span class="form_required">*</span>
+                </label>
               </div>
               <div
                 v-if="validateRePassword && repassword.length > 0"
@@ -95,6 +103,14 @@ export default {
   methods: {
     onClickOutside() {
       this.$emit("registerModal");
+      this.$notify({
+        group: "globalNotifications",
+        title: "Successfully registered!",
+        text: `Hello dear ${
+          this.username
+        }, you are one step closer now, please login!`,
+        type: "success"
+      });
     },
     submitRegister() {
       console.log(this.validateRePassword);

@@ -22,7 +22,9 @@
                   maxlength="30"
                   required
                 >
-                <label for="username">Username</label>
+                <label for="username">Username
+                  <span class="form_required">*</span>
+                </label>
               </div>
               <div class="form_error--msg" v-if="usernameValidation">Username is wrong!</div>
             </div>
@@ -38,7 +40,10 @@
                   maxlength="30"
                   required
                 >
-                <label for="password">Password</label>
+                <label for="password">
+                  Password
+                  <span class="form_required">*</span>
+                </label>
               </div>
               <div class="form_error--msg" v-if="passwordValidation">Password is wrong!</div>
               <div
@@ -99,6 +104,12 @@ export default {
         } else {
           this.$store.dispatch("setUser", this.username);
           this.$emit("loginModal");
+          this.$notify({
+            group: "globalNotifications",
+            title: "Welcome to Nuxtflix!",
+            text: `Dear ${this.username}, you can check out movies now!`,
+            type: "info"
+          });
         }
       }
     }
