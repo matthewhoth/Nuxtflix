@@ -16,16 +16,35 @@
 import navbarPrimary from "@/components/layout/navbar";
 import registerModal from "@/components/modals/register/index";
 import loginModal from "@/components/modals/login/index";
+
 export default {
   head() {
     return {
-      title: "NuxtFlix"
+      title: "Nuxtflix"
     };
   },
 
   components: {
     navbarPrimary,
-    registerModal
+    registerModal,
+    loginModal
+  },
+
+  data() {
+    return {
+      registerModalState: false,
+      loginModalState: false
+    };
+  },
+
+  methods: {
+    onRegister() {
+      this.registerModalState = !this.registerModalState;
+    },
+
+    onLogin() {
+      this.loginModalState = !this.loginModalState;
+    }
   }
 };
 </script>
