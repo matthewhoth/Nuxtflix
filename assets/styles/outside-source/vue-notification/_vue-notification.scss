@@ -1,0 +1,51 @@
+.notifications {
+  top: 0 !important;
+  right: 0.5rem !important;
+  position: fixed !important;
+  z-index: $z_index-tooltip !important;
+}
+
+.vue-notification {
+  padding: 1rem 2rem !important;
+  margin: 0.5rem 0 !important;
+  font-size: 1.2rem !important;
+  color: $primary_color_light !important;
+  background: $primary_color_dark !important;
+  border-left: 5px solid $primary_color_light !important;
+  opacity: 0.9 !important;
+  @include border-radius(5px !important);
+  @include transition(0.2s linear !important);
+  &:hover {
+    opacity: 1 !important;
+  }
+
+  .notification-title {
+    font-weight: 700 !important;
+    color: #ffffff !important;
+  }
+
+  .notification-content {
+    font-weight: 500 !important;
+  }
+
+  &.info {
+    background: #1e90ff !important;
+    border-left: 5px solid #1e6edb !important;
+    color: #ffffff !important;
+  }
+  &.warn {
+    background: #ffb648 !important;
+    border-left-color: #f48a06 !important;
+    color: #ffffff !important;
+  }
+  &.error {
+    background: #e54d42 !important;
+    border-left-color: #b82e24 !important;
+    color: #ffffff !important;
+  }
+  &.success {
+    background: #1abc9c !important;
+    border-left-color: #16ac8d !important;
+    color: #ffffff !important;
+  }
+}

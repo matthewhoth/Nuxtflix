@@ -30,6 +30,7 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    { src: "./plugins/vue-notification", ssr: false },
     { src: "~/plugins/global-mixins" },
     { src: "./plugins/nuxt-client-init" }
   ],

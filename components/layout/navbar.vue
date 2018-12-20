@@ -24,6 +24,12 @@ export default {
   methods: {
     onLogout() {
       this.$store.dispatch("userLogout");
+      this.$notify({
+        group: "globalNotifications",
+        title: "Farewell!",
+        text: `Hope that you will come back soon, take care!`,
+        type: "info"
+      });
     }
   }
 };

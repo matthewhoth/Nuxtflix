@@ -6,6 +6,9 @@
       <registerModal v-if="registerModalState" @registerModal="onRegister"/>
       <loginModal v-if="loginModalState" @loginModal="onLogin"/>
     </transition>
+    <no-ssr>
+      <notifications group="globalNotifications"/>
+    </no-ssr>
   </div>
 </template>
 
