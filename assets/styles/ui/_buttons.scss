@@ -1,0 +1,25 @@
+$btn_bg: $secondary_color_dark;
+$text_dark: $primary_color_dark;
+
+.btn {
+  border: none;
+  display: block;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  padding: 0 2rem;
+  background-color: $btn_bg;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: $text_dark;
+  @include fontSemiBold;
+  @include border-radius(5px);
+  @include transition(0.2s linear);
+  &:hover {
+    background-color: lighten($btn_bg, 10%);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: $text_dark;
+  }
+}

@@ -1,0 +1,36 @@
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  background-color: transparent;
+  height: 3rem;
+  line-height: 3rem;
+  border-bottom: 2px solid lighten($primary_color_dark, 20%);
+  color: $primary_color_light;
+  font-size: 1.2rem;
+  &.focus {
+    + label {
+      color: $secondary_color_dark !important;
+      top: 0 !important;
+      @include fontSemiBold;
+      .form_required {
+        opacity: 1;
+      }
+    }
+  }
+  &:focus {
+    border-bottom: 2px solid $secondary_color_dark;
+    + label {
+      color: $secondary_color_dark !important;
+      top: 0 !important;
+      @include fontSemiBold;
+      .form_required {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+input:focus + label {
+  color: $secondary_color_dark !important;
+  top: 0 !important;
+}

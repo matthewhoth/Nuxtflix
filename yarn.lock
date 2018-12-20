@@ -6447,6 +6447,10 @@ vue-no-ssr@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
 
+vue-notification@^1.3.13:
+  version "1.3.14"
+  resolved "https://registry.yarnpkg.com/vue-notification/-/vue-notification-1.3.14.tgz#6717f9127bb34ed1e95d93644359421659680515"
+
 vue-router@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.2.tgz#dedc67afe6c4e2bc25682c8b1c2a8c0d7c7e56be"
