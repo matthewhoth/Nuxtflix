@@ -1,0 +1,51 @@
+$form_header_bg: $secondary_color_dark;
+$text_dark: $primary_color_dark;
+
+.form_group {
+}
+
+.form_control {
+}
+
+.form_error--msg {
+  color: $state_error_color;
+  font-size: 1rem;
+}
+
+.form_required {
+  color: $state_error_color;
+  margin-left: 0.5rem;
+  opacity: 0.5;
+  @include transition(0.2s linear);
+}
+
+.form_header {
+  position: relative;
+  background-color: $form_header_bg;
+  height: 4rem;
+  line-height: 4rem;
+  color: $text_dark;
+  text-align: center;
+  text-transform: uppercase;
+  top: 0;
+  @include fontSemiBold;
+  @include positionSticky;
+  @include border-radius(5px 5px 0 0);
+  @media only screen and (max-width: 768px) {
+    @include border-radius(0);
+  }
+}
+
+.form_box {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column-reverse;
+  label {
+    position: relative;
+    font-size: 1.2rem;
+    top: 2.5rem;
+    display: block;
+    @include transition(0.2s linear);
+    @include fontMedium;
+  }
+}

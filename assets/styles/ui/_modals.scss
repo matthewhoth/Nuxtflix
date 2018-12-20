@@ -14,7 +14,18 @@
 
 .modal_container {
   background-color: rgb(180, 0, 0);
-  padding: 2rem;
+  max-height: 75vh;
+  overflow: auto;
+  @include border-radius(5px);
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    @include border-radius(0);
+  }
 }
 
 .modal_close {

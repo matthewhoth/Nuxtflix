@@ -7,6 +7,7 @@
 @mixin positionSticky {
   position: sticky;
   position: -webkit-sticky;
+  z-index: 999;
 }
 
 @mixin transform($transform) {
@@ -80,48 +81,38 @@
   bottom: $bottom;
   left: $left;
 }
-
 @mixin fontSmoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 // Font Weight Mixins by name
 @mixin fontThin {
   font-weight: 100;
 }
-
 @mixin fontExtraLight {
   font-weight: 200;
 }
-
 @mixin fontLight {
   font-weight: 300;
 }
-
 @mixin fontRegular {
   font-weight: 400;
 }
-
 @mixin fontMedium {
   font-weight: 500;
 }
 @mixin fontSemiBold {
   font-weight: 600;
 }
-
 @mixin fontBold {
   font-weight: 700;
 }
-
 @mixin fontExtraBold {
   font-weight: 800;
 }
-
 @mixin fontBlack {
   font-weight: 900;
 }
-
 // Clearfix
 @mixin cf {
   clear: both;
@@ -131,9 +122,7 @@
     display: table;
   }
 }
-
 // Gradient Mixins
-
 @mixin gradientTopToBottom($top, $bottom) {
   background: $top; /* Old browsers */
   background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6-15 */
@@ -149,7 +138,6 @@
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 ); /* IE6-9 */
 }
-
 @mixin gradientLeftToRigght($left, $right) {
   background: $left; /* Old browsers */
   background: -moz-linear-gradient(top, $left 0%, $right 100%); /* FF3.6-15 */
@@ -163,5 +151,6 @@
     $left 0%,
     $right 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$left', endColorstr='$right',GradientType=0 ); /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$left', endColorstr='$right',GradientType=0 );
+  /* IE6-9 */
 }
