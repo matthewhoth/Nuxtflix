@@ -1,5 +1,9 @@
 import Vue from "vue";
 
 Vue.mixin({
-  methods: {}
+  methods: {
+    $imageUrl() {
+      return process.env.baseUrl;
+    }
+  }
 });
