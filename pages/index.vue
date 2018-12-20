@@ -19,27 +19,25 @@
       </div>
       <div v-else>
         <div>Get Username {{$store.state.user}}</div>
+        <div class="bootstrap-wrapper">
+          <div class="container">
+            <moviesList/>
+          </div>
+        </div>
       </div>
     </no-ssr>
   </div>
 </template>
 
 <script>
+import moviesList from "@/components/movies/movies-list";
+
 export default {
-  components: {},
+  components: { moviesList },
   data() {
     return {};
   },
   mounted() {},
-  methods: {
-    setUser() {
-      let data = {
-        id: 1,
-        username: "admin",
-        rank: "superadmin"
-      };
-      this.$store.dispatch("setUser", data);
-    }
-  }
+  methods: {}
 };
 </script>
