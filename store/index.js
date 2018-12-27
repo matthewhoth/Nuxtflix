@@ -52,15 +52,18 @@ export const actions = {
 
   async userLogout({ commit }) {
     Cookies.remove("user");
-    commit("REGISTER_ACCOUNT", []);
     commit("SET_USER", "");
   },
 
   nuxtClientInit({ commit }) {
     const user = Cookies.get("user");
     const movies = Cookies.get("moviesList");
+    const accountDetails = Cookies.get("accountDetails");
     if (user) {
       commit("SET_USER", user);
+    }
+    if (accountDetails) {
+      commit("REGISTER_ACCOUNT", JSON.parse(accountDetails));
     }
     if (movies) {
       commit("SET_MOVIES", JSON.parse(movies));
