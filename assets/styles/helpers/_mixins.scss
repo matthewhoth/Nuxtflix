@@ -24,6 +24,13 @@
   animation: $animation;
 }
 
+@mixin animationDelay($delay) {
+  -webkit-animation-delay: $delay;
+  -moz-animation-delay: $delay;
+  -o-animation-delay: $delay;
+  animation-delay: $delay;
+}
+
 @mixin appearance($appearance) {
   -webkit-appearance: $appearance;
   -moz-appearance: $appearance;
@@ -124,7 +131,8 @@
 }
 // Gradient Mixins
 @mixin gradientTopToBottom($top, $bottom) {
-  background: $top; /* Old browsers */
+  background: $top;
+  /* Old browsers */
   background: -moz-linear-gradient(top, $top 0%, $bottom 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(
     top,
@@ -140,7 +148,8 @@
 }
 @mixin gradientLeftToRigght($left, $right) {
   background: $left; /* Old browsers */
-  background: -moz-linear-gradient(top, $left 0%, $right 100%); /* FF3.6-15 */
+  background: -moz-linear-gradient(top, $left 0%, $right 100%);
+  /* FF3.6-15 */
   background: -webkit-linear-gradient(
     top,
     $left 0%,

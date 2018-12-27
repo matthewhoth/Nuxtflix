@@ -1,14 +1,24 @@
 <template>
-  <div>Movies list
-    <movieCard :movies="moviesList" @rateMovie="onRateMovie"></movieCard>
+  <div>
+    <movieCard :movies="$store.state.moviesList" @rateMovie="onRateMovie"></movieCard>
+    <transition name="fadeRating">
+      <rateMovieModal
+        v-if="ratingModalState"
+        @closeRatingModal="ratingModalState = false"
+        :ratingStars="rating"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
 import movieCard from "@/components/ui/movie-card";
+import rateMovieModal from "@/components/modals/rating/index";
+import Cookies from "js-cookie";
 export default {
   components: {
-    movieCard
+    movieCard,
+    rateMovieModal
   },
   data() {
     return {
@@ -43,22 +53,32 @@ export default {
           image: "avengers_2012.jpg",
           rating: 3
         }
-      ]
+      ],
+      ratingModalState: false,
+      rating: 0
     };
+  },
+  mounted() {
+    const movies = Cookies.get("moviesList");
+    if (!movies) {
+      this.$store.dispatch("setMovies", this.moviesList);
+    }
   },
   methods: {
     onRateMovie(data) {
       console.log(data);
       this.updateMovie(data.id, "rating", data.rating);
+      this.ratingModalState = true;
+      this.rating = data.rating;
       // console.log(this.moviesList);
     },
     updateMovie(id, propName, value) {
-      let movie = this.moviesList.find(v => {
-        return v.id === id;
-      });
-      if (movie && movie.hasOwnProperty(propName)) {
-        movie[propName] = value;
-      }
+      let data = {
+        id: id,
+        propName: propName,
+        value: value
+      };
+      this.$store.dispatch("rateMovie", data);
     }
   }
 };
