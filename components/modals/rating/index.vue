@@ -2,9 +2,9 @@
   <div class="modal_overlay">
     <div class="modal_wrapper">
       <div>
-        <i class="rain icon-star" v-for="n in 75" :key="n"></i>
+        <i class="rain icon-star" v-for="n in 50" :key="n"></i>
       </div>
-      <div class="text--align-center">
+      <div class="text--align-center padding_all--2">
         <div>
           <h3>Nice! You gave this movie</h3>
         </div>
