@@ -1,14 +1,23 @@
 <template>
-  <div>Movies list
+  <div>
     <movieCard :movies="moviesList" @rateMovie="onRateMovie"></movieCard>
+    <transition name="fadeRating">
+      <rateMovieModal
+        v-if="ratingModalState"
+        @closeRatingModal="ratingModalState = false"
+        :ratingStars="rating"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
 import movieCard from "@/components/ui/movie-card";
+import rateMovieModal from "@/components/modals/rating/index";
 export default {
   components: {
-    movieCard
+    movieCard,
+    rateMovieModal
   },
   data() {
     return {
@@ -43,13 +52,17 @@ export default {
           image: "avengers_2012.jpg",
           rating: 3
         }
-      ]
+      ],
+      ratingModalState: false,
+      rating: 0
     };
   },
   methods: {
     onRateMovie(data) {
       console.log(data);
       this.updateMovie(data.id, "rating", data.rating);
+      this.ratingModalState = true;
+      this.rating = data.rating;
       // console.log(this.moviesList);
     },
     updateMovie(id, propName, value) {
