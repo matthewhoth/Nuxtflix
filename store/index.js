@@ -3,8 +3,7 @@ import Cookies from "js-cookie";
 export const state = () => ({
   accountDetails: [],
   user: "",
-  moviesList: [],
-  rateMoviesModalState: false
+  moviesList: []
 });
 
 export const mutations = {
@@ -26,14 +25,8 @@ export const mutations = {
     });
     if (movie && movie.hasOwnProperty(data.propName)) {
       movie[data.propName] = data.value;
-      if (process.browser) {
-        localStorage.setItem("moviesList", JSON.stringify(state.moviesList));
-      }
+      Cookies.set("moviesList", state.moviesList, { expires: 365 });
     }
-  },
-
-  SET_RATE_MOVIES_MODAL(state, modalState) {
-    state.rateMoviesModalState = modalState;
   }
 };
 
@@ -49,9 +42,7 @@ export const actions = {
   },
 
   async setMovies({ commit }, movies) {
-    if (process.browser) {
-      localStorage.setItem("moviesList", JSON.stringify(movies));
-    }
+    Cookies.set("moviesList", movies, { expires: 365 });
     commit("SET_MOVIES", movies);
   },
 
@@ -61,25 +52,15 @@ export const actions = {
 
   async userLogout({ commit }) {
     Cookies.remove("user");
+    commit("REGISTER_ACCOUNT", []);
     commit("SET_USER", "");
-  },
-
-  async setRateMoviesModal({ commit }, modalState) {
-    commit("SET_RATE_MOVIES_MODAL", modalState);
   },
 
   nuxtClientInit({ commit }) {
     const user = Cookies.get("user");
-    let movies;
-    const accountDetails = Cookies.get("accountDetails");
-    if (process.browser) {
-      movies = localStorage.getItem("moviesList");
-    }
+    const movies = Cookies.get("moviesList");
     if (user) {
       commit("SET_USER", user);
-    }
-    if (accountDetails) {
-      commit("REGISTER_ACCOUNT", JSON.parse(accountDetails));
     }
     if (movies) {
       commit("SET_MOVIES", JSON.parse(movies));
