@@ -11,14 +11,12 @@
             </span>
           </div>
           <p>
-            Please
-            <strong>register</strong> and
-            <strong>login</strong> to rate movies!
+            Let's rate some
+            <strong>movies</strong>!
           </p>
         </div>
       </div>
       <div v-else>
-        <div>Get Username {{$store.state.user}}</div>
         <div class="bootstrap-wrapper">
           <div class="container">
             <moviesList/>
