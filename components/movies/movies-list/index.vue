@@ -25,33 +25,38 @@ export default {
       moviesList: [
         {
           id: 1,
-          name: "First",
+          name: "The Avengers",
+          year: 2012,
           image: "avengers_2012.jpg",
           rating: 0
         },
         {
           id: 2,
-          name: "Second",
-          image: "avengers_2012.jpg",
-          rating: 2
+          name: "Deadpool 2",
+          year: 2018,
+          image: "deadpool2_2018.jpg",
+          rating: 0
         },
         {
           id: 3,
-          name: "Second",
-          image: "avengers_2012.jpg",
-          rating: 3
+          name: "Black Panther",
+          year: 2018,
+          image: "blackpanther_2018.jpg",
+          rating: 0
         },
         {
           id: 4,
-          name: "Second",
-          image: "avengers_2012.jpg",
-          rating: 1
+          name: "Ant-man",
+          year: 2015,
+          image: "antman_2015.jpg",
+          rating: 0
         },
         {
           id: 5,
-          name: "Second",
-          image: "avengers_2012.jpg",
-          rating: 3
+          name: "Jurastic World: Fallen Kingdom",
+          year: 2018,
+          image: "jurasticworld_2018.jpg",
+          rating: 0
         }
       ],
       ratingModalState: false,
@@ -66,11 +71,9 @@ export default {
   },
   methods: {
     onRateMovie(data) {
-      console.log(data);
       this.updateMovie(data.id, "rating", data.rating);
       this.ratingModalState = true;
       this.rating = data.rating;
-      // console.log(this.moviesList);
     },
     updateMovie(id, propName, value) {
       let data = {

@@ -1,7 +1,22 @@
 const pkg = require("./package");
 
+const imageBase =
+  process.env.DEPLOY_ENV === "NETLIFY"
+    ? {
+        env: {
+          baseUrl: "images"
+        }
+      }
+    : {
+        env: {
+          baseUrl: "images"
+        }
+      };
+
 module.exports = {
   mode: "universal",
+
+  ...imageBase,
 
   /*
    ** Headers of the page
