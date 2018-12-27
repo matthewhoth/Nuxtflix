@@ -7,10 +7,9 @@
       </div>
       <div class="navbar_links" v-if="!$store.state.user">
         <div
-          class="register click click_link click_link--color-light"
-          @click="$emit('registerModal')"
-        >Register or</div>
-        <div class="login click click_link" @click="$emit('loginModal')">Login</div>
+          class="login click click_link"
+          @click="$store.state.accountDetails.length !== 0 ? $emit('loginModal') : $emit('registerModal')"
+        >{{$store.state.accountDetails.length !== 0 ? 'Login' : 'Register'}}</div>
       </div>
       <div class="navbar_links" v-else>
         <div class="login click click_link" @click="onLogout()">Logout</div>
