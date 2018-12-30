@@ -1,7 +1,22 @@
 const pkg = require("./package");
 
+const imageBase =
+  process.env.DEPLOY_ENV === "NETLIFY"
+    ? {
+        env: {
+          baseUrl: "images"
+        }
+      }
+    : {
+        env: {
+          baseUrl: "images"
+        }
+      };
+
 module.exports = {
   mode: "universal",
+
+  ...imageBase,
 
   /*
    ** Headers of the page
@@ -10,7 +25,11 @@ module.exports = {
     title: pkg.name,
     meta: [
       { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "viewport",
+        content:
+          "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      },
       { hid: "description", name: "description", content: pkg.description }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
@@ -32,6 +51,7 @@ module.exports = {
   plugins: [
     { src: "./plugins/vue-notification", ssr: false },
     { src: "~/plugins/global-mixins" },
+    { src: "./plugins/v-tooltip" },
     { src: "./plugins/nuxt-client-init" }
   ],
 

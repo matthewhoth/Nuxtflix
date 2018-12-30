@@ -1,7 +1,16 @@
 <template>
   <div>
-    <movieCard :movies="$store.state.moviesList" @rateMovie="onRateMovie"></movieCard>
+    <movieCard
+      :movies="$store.state.moviesList"
+      @rateMovie="onRateMovie"
+      @openMoviesDetailsModal="getMovieDetailsForModal"
+    ></movieCard>
     <transition name="fadeRating">
+      <movieDetailsModal
+        v-if="movieDetailsModalState"
+        @closeMoviesDetailsModal="movieDetailsModalState = false"
+        :movieData="movieDetailsSingle"
+      />
       <rateMovieModal
         v-if="ratingModalState"
         @closeRatingModal="ratingModalState = false"
@@ -14,63 +23,39 @@
 <script>
 import movieCard from "@/components/ui/movie-card";
 import rateMovieModal from "@/components/modals/rating/index";
+import movieDetailsModal from "@/components/modals/details/index";
+import listOfMovies from "@/components/movies/movies-list/movies-list";
 import Cookies from "js-cookie";
 export default {
   components: {
     movieCard,
-    rateMovieModal
+    rateMovieModal,
+    movieDetailsModal
   },
   data() {
     return {
-      moviesList: [
-        {
-          id: 1,
-          name: "First",
-          image: "avengers_2012.jpg",
-          rating: 0
-        },
-        {
-          id: 2,
-          name: "Second",
-          image: "avengers_2012.jpg",
-          rating: 2
-        },
-        {
-          id: 3,
-          name: "Second",
-          image: "avengers_2012.jpg",
-          rating: 3
-        },
-        {
-          id: 4,
-          name: "Second",
-          image: "avengers_2012.jpg",
-          rating: 1
-        },
-        {
-          id: 5,
-          name: "Second",
-          image: "avengers_2012.jpg",
-          rating: 3
-        }
-      ],
+      moviesList: listOfMovies,
       ratingModalState: false,
+      movieDetailsModalState: false,
+      movieDetailsSingle: {},
       rating: 0
     };
   },
   mounted() {
-    const movies = Cookies.get("moviesList");
+    let movies;
+    if (process.browser) {
+      movies = localStorage.getItem("moviesList");
+    }
     if (!movies) {
       this.$store.dispatch("setMovies", this.moviesList);
     }
   },
   methods: {
     onRateMovie(data) {
-      console.log(data);
       this.updateMovie(data.id, "rating", data.rating);
       this.ratingModalState = true;
+
       this.rating = data.rating;
-      // console.log(this.moviesList);
     },
     updateMovie(id, propName, value) {
       let data = {
@@ -79,6 +64,11 @@ export default {
         value: value
       };
       this.$store.dispatch("rateMovie", data);
+    },
+    getMovieDetailsForModal(data) {
+      console.log(data);
+      this.movieDetailsSingle = data;
+      this.movieDetailsModalState = true;
     }
   }
 };

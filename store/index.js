@@ -25,7 +25,9 @@ export const mutations = {
     });
     if (movie && movie.hasOwnProperty(data.propName)) {
       movie[data.propName] = data.value;
-      Cookies.set("moviesList", state.moviesList, { expires: 365 });
+      if (process.browser) {
+        localStorage.setItem("moviesList", JSON.stringify(state.moviesList));
+      }
     }
   }
 };
@@ -42,7 +44,9 @@ export const actions = {
   },
 
   async setMovies({ commit }, movies) {
-    Cookies.set("moviesList", movies, { expires: 365 });
+    if (process.browser) {
+      localStorage.setItem("moviesList", JSON.stringify(movies));
+    }
     commit("SET_MOVIES", movies);
   },
 
@@ -57,8 +61,11 @@ export const actions = {
 
   nuxtClientInit({ commit }) {
     const user = Cookies.get("user");
-    const movies = Cookies.get("moviesList");
+    let movies;
     const accountDetails = Cookies.get("accountDetails");
+    if (process.browser) {
+      movies = localStorage.getItem("moviesList");
+    }
     if (user) {
       commit("SET_USER", user);
     }
