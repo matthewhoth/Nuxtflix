@@ -24,6 +24,7 @@
 import movieCard from "@/components/ui/movie-card";
 import rateMovieModal from "@/components/modals/rating/index";
 import movieDetailsModal from "@/components/modals/details/index";
+import listOfMovies from "@/components/movies/movies-list/movies-list";
 import Cookies from "js-cookie";
 export default {
   components: {
@@ -33,43 +34,7 @@ export default {
   },
   data() {
     return {
-      moviesList: [
-        {
-          id: 1,
-          name: "The Avengers",
-          year: 2012,
-          image: "avengers_2012.jpg",
-          rating: 0
-        },
-        {
-          id: 2,
-          name: "Deadpool 2",
-          year: 2018,
-          image: "deadpool2_2018.jpg",
-          rating: 0
-        },
-        {
-          id: 3,
-          name: "Black Panther",
-          year: 2018,
-          image: "blackpanther_2018.jpg",
-          rating: 0
-        },
-        {
-          id: 4,
-          name: "Ant-man",
-          year: 2015,
-          image: "antman_2015.jpg",
-          rating: 0
-        },
-        {
-          id: 5,
-          name: "Jurastic World: Fallen Kingdom",
-          year: 2018,
-          image: "jurasticworld_2018.jpg",
-          rating: 0
-        }
-      ],
+      moviesList: listOfMovies,
       ratingModalState: false,
       movieDetailsModalState: false,
       movieDetailsSingle: {},
@@ -77,7 +42,10 @@ export default {
     };
   },
   mounted() {
-    const movies = Cookies.get("moviesList");
+    let movies;
+    if (process.browser) {
+      movies = localStorage.getItem("moviesList");
+    }
     if (!movies) {
       this.$store.dispatch("setMovies", this.moviesList);
     }
