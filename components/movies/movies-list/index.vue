@@ -1,7 +1,16 @@
 <template>
   <div>
-    <movieCard :movies="$store.state.moviesList" @rateMovie="onRateMovie"></movieCard>
+    <movieCard
+      :movies="$store.state.moviesList"
+      @rateMovie="onRateMovie"
+      @openMoviesDetailsModal="getMovieDetailsForModal"
+    ></movieCard>
     <transition name="fadeRating">
+      <movieDetailsModal
+        v-if="movieDetailsModalState"
+        @closeMoviesDetailsModal="movieDetailsModalState = false"
+        :movieData="movieDetailsSingle"
+      />
       <rateMovieModal
         v-if="ratingModalState"
         @closeRatingModal="ratingModalState = false"
@@ -14,11 +23,13 @@
 <script>
 import movieCard from "@/components/ui/movie-card";
 import rateMovieModal from "@/components/modals/rating/index";
+import movieDetailsModal from "@/components/modals/details/index";
 import Cookies from "js-cookie";
 export default {
   components: {
     movieCard,
-    rateMovieModal
+    rateMovieModal,
+    movieDetailsModal
   },
   data() {
     return {
@@ -60,6 +71,8 @@ export default {
         }
       ],
       ratingModalState: false,
+      movieDetailsModalState: false,
+      movieDetailsSingle: {},
       rating: 0
     };
   },
@@ -73,6 +86,7 @@ export default {
     onRateMovie(data) {
       this.updateMovie(data.id, "rating", data.rating);
       this.ratingModalState = true;
+
       this.rating = data.rating;
     },
     updateMovie(id, propName, value) {
@@ -82,6 +96,11 @@ export default {
         value: value
       };
       this.$store.dispatch("rateMovie", data);
+    },
+    getMovieDetailsForModal(data) {
+      console.log(data);
+      this.movieDetailsSingle = data;
+      this.movieDetailsModalState = true;
     }
   }
 };
