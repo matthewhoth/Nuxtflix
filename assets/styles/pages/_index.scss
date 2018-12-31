@@ -28,7 +28,7 @@
     }
   }
   p {
-    margin-top: 2rem;
+    margin: 2rem 0;
   }
 }
 
@@ -44,4 +44,12 @@
   -moz-animation-delay: 0.5s;
   -o-animation-delay: 0.5s;
   animation-delay: 0.5s;
+}
+.moviesBg {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: calc(100vh - 5rem);
+  opacity: 0.2;
+  @include fullscreen(fixed, 0, 0, 0, 0);
 }

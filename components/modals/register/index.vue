@@ -31,7 +31,7 @@
             <div class="form_control">
               <div class="form_box">
                 <input
-                  type="password"
+                  :type="showPassword ? 'text' : 'password'"
                   id="password"
                   v-model="password"
                   :class="{'focus': password.length > 0}"
@@ -44,6 +44,10 @@
                   Password
                   <span class="form_required">*</span>
                 </label>
+                <i
+                  class="icon-eye click click_link click_link--color-link"
+                  @click="showPassword ? showPassword = false : showPassword = true"
+                ></i>
               </div>
             </div>
             <div class="form_control">
@@ -58,7 +62,8 @@
                   maxlength="30"
                   required
                 >
-                <label for="repassword">Repeat Password
+                <label for="repassword">
+                  Repeat Password
                   <span class="form_required">*</span>
                 </label>
               </div>
@@ -77,6 +82,7 @@
   </div>
 </template>
 
+
 <script>
 import clickOutside from "@/directives/clickOutside";
 export default {
@@ -87,7 +93,8 @@ export default {
     return {
       username: "",
       password: "",
-      repassword: ""
+      repassword: "",
+      showPassword: false
     };
   },
   computed: {

@@ -1,62 +1,83 @@
 <template>
-  <div class="row">
-    <div v-for="movie in movies" :key="movie.id" class="movies_cards">
-      <div class="flip">
-        <div class="front">
-          <img :src="`${$imageUrl()}/movies/${movie.image}`" :alt="movie.name">
-          <div class="front_cover">
+  <div>
+    <div class="featured_movies--header">
+      <div class="featured_movies">
+        <i class="icon-metacafe-logo"></i>
+        <span>
+          <strong>Featured</strong>Movies
+        </span>
+      </div>
+      <div class="featured_movies--search">
+        <input type="text" placeholder="Search for movie..." v-model="keyword">
+        <i class="icon-magnifier"></i>
+      </div>
+    </div>
+    <div class="row">
+      <div
+        v-for="movie in filteredList"
+        :key="movie.id"
+        class="movies_cards"
+        @mouseover="frontNumber = movie.id"
+        @mouseleave="frontNumber = null"
+      >
+        <div class="flip">
+          <div class="front" :class="{'front--hide': frontNumber === movie.id}">
+            <img :src="`${$imageUrl()}/movies/${movie.image}`" :alt="movie.name">
+            <div class="front_cover">
+              <div>
+                <div class="movie_name">{{movie.name}} ({{movie.year}})</div>
+                <div class="movie_rating">
+                  <i class="icon-star"></i>
+                  {{movie.rating === 0 ? 'No rating' : movie.rating}}
+                  <span
+                    v-if="movie.rating > 0"
+                  >{{movie.rating === 1 ? 'star' : `stars`}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="back">
+            <i
+              v-tooltip.top-center="'Show Details'"
+              @click="onOpenMovieDetailsModal(movie)"
+              class="icon-info click click_link click_link--color-light"
+            ></i>
+            <div class="back_cover">
+              <img :src="`${$imageUrl()}/movies/${movie.image}`" :alt="movie.name">
+            </div>
             <div>
-              <div class="movie_name">{{movie.name}} ({{movie.year}})</div>
-              <div class="movie_rating">
-                <i class="icon-star"></i>
-                {{movie.rating === 0 ? 'No rating' : movie.rating}}
-                <span
-                  v-if="movie.rating > 0"
-                >{{movie.rating === 1 ? 'star' : `stars`}}</span>
+              <div class="movie_name text--align-center">{{movie.name}} ({{movie.year}})</div>
+              <div class="movie_cover">
+                <img :src="`${$imageUrl()}/movies/${movie.image}`" :alt="movie.name">
+              </div>
+              <div class="movie_rate">Rate movie</div>
+              <div class="display_flex display_flex--alignItems-center">
+                <span class="rate">
+                  <i
+                    :class="{active: movie.rating === 1 || movie.rating === 2 || movie.rating === 3 || movie.rating === 4 || movie.rating === 5}"
+                    @click="onRate(movie.id, 1)"
+                  >★</i>
+                  <i
+                    :class="{active: movie.rating === 2 || movie.rating === 3 || movie.rating === 4 || movie.rating === 5}"
+                    @click="onRate(movie.id, 2)"
+                  >★</i>
+                  <i
+                    :class="{active: movie.rating === 3 || movie.rating === 4 || movie.rating === 5}"
+                    @click="onRate(movie.id, 3)"
+                  >★</i>
+                  <i
+                    :class="{active: movie.rating === 4 || movie.rating === 5}"
+                    @click="onRate(movie.id, 4)"
+                  >★</i>
+                  <i :class="{active: movie.rating === 5}" @click="onRate(movie.id, 5)">★</i>
+                </span>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="back">
-          <i
-            v-tooltip.top-center="'Show Details'"
-            @click="onOpenMovieDetailsModal(movie)"
-            class="icon-info click click_link click_link--color-light"
-          ></i>
-          <div class="back_cover">
-            <img :src="`${$imageUrl()}/movies/${movie.image}`" :alt="movie.name">
-          </div>
-          <div>
-            <div class="movie_name text--align-center">{{movie.name}} ({{movie.year}})</div>
-            <div class="movie_cover">
-              <img :src="`${$imageUrl()}/movies/${movie.image}`" :alt="movie.name">
-            </div>
-            <div class="movie_rate">Rate movie</div>
-            <div class="display_flex display_flex--alignItems-center">
-              <span class="rate">
-                <i
-                  :class="{active: movie.rating === 1 || movie.rating === 2 || movie.rating === 3 || movie.rating === 4 || movie.rating === 5}"
-                  @click="onRate(movie.id, 1)"
-                >★</i>
-                <i
-                  :class="{active: movie.rating === 2 || movie.rating === 3 || movie.rating === 4 || movie.rating === 5}"
-                  @click="onRate(movie.id, 2)"
-                >★</i>
-                <i
-                  :class="{active: movie.rating === 3 || movie.rating === 4 || movie.rating === 5}"
-                  @click="onRate(movie.id, 3)"
-                >★</i>
-                <i
-                  :class="{active: movie.rating === 4 || movie.rating === 5}"
-                  @click="onRate(movie.id, 4)"
-                >★</i>
-                <i :class="{active: movie.rating === 5}" @click="onRate(movie.id, 5)">★</i>
-              </span>
-            </div>
-          </div>
-        </div>
       </div>
+      <div class="no_result" v-if="filteredList.length === 0">No Movies Found :(</div>
     </div>
   </div>
 </template>
@@ -69,7 +90,19 @@ export default {
       required: true
     }
   },
-  mounted() {},
+  data() {
+    return {
+      frontNumber: null,
+      keyword: ""
+    };
+  },
+  computed: {
+    filteredList() {
+      return this.movies.filter(obj => {
+        return obj.name.toLowerCase().includes(this.keyword.toLowerCase());
+      });
+    }
+  },
   methods: {
     onRate(id, rating) {
       let data = {
@@ -91,8 +124,55 @@ export default {
 @import "~assets/styles/variables/colors";
 @import "~assets/styles/helpers/mixins";
 //@import "~assets/styles/layout/typography";
+.featured_movies--header {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.featured_movies {
+  text-align: left;
+  font-size: 1.8rem;
+  color: $secondary_color_light;
+  @include fontMedium;
+  @media only screen and (max-width: 468px) {
+    display: none;
+  }
+  i {
+    top: -7px;
+    font-size: 2.4rem;
+  }
+  span {
+    color: $secondary_color_dark;
+  }
+}
+.featured_movies--search {
+  position: relative;
+  @media only screen and (max-width: 468px) {
+    width: 100%;
+  }
+  input {
+    padding-left: 2rem;
+    @media only screen and (max-width: 468px) {
+      width: 100%;
+    }
+  }
+  i {
+    display: flex;
+    align-items: center;
+    @include fullscreen(absolute, 0, initial, 0, 0);
+  }
+}
+.no_result {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  @include fontMedium;
+}
 .row {
-  margin: 2rem 0;
+  margin: 0 0 2rem 0;
 }
 .movies_cards {
   width: calc((100% / 5) - 2rem);

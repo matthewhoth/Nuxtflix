@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="moviesBg">
     <no-ssr>
       <div v-if="!$store.state.user" id="welcome">
         <div>

@@ -1,0 +1,30 @@
+.avatar {
+  @include border-radius(5px);
+}
+
+.avatar--inline {
+  display: inline-block;
+}
+
+.avatar--align-middle {
+  vertical-align: middle;
+}
+
+.avatar--small {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.avatar--medium {
+  width: 5rem;
+  height: 5rem;
+}
+
+.avatar--large {
+  width: 10rem;
+  height: 10rem;
+}
+
+.avatar--rounded {
+  @include border-radius(100%);
+}

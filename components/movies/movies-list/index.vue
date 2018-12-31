@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="movies_premium">
+      <img :src="`${$imageUrl()}/banner.jpg`" alt>
+    </div>
+
     <movieCard
       :movies="$store.state.moviesList"
       @rateMovie="onRateMovie"
@@ -25,7 +29,7 @@ import movieCard from "@/components/ui/movie-card";
 import rateMovieModal from "@/components/modals/rating/index";
 import movieDetailsModal from "@/components/modals/details/index";
 import listOfMovies from "@/components/movies/movies-list/movies-list";
-import Cookies from "js-cookie";
+
 export default {
   components: {
     movieCard,
@@ -73,3 +77,13 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+@import "~assets/styles/variables/colors";
+@import "~assets/styles/helpers/mixins";
+.movies_premium {
+  padding-top: 2rem;
+  img {
+    @include border-radius(5px);
+  }
+}
+</style>
