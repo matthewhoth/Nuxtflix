@@ -22,7 +22,8 @@
                   maxlength="30"
                   required
                 >
-                <label for="username">Username
+                <label for="username">
+                  Username
                   <span class="form_required">*</span>
                 </label>
               </div>
@@ -31,7 +32,7 @@
             <div class="form_control">
               <div class="form_box">
                 <input
-                  type="password"
+                  :type="showPassword ? 'text' : 'password'"
                   id="password"
                   v-model="password"
                   :class="{'focus': password.length > 0}"
@@ -44,6 +45,10 @@
                   Password
                   <span class="form_required">*</span>
                 </label>
+                <i
+                  class="icon-eye click click_link click_link--color-link"
+                  @click="showPassword ? showPassword = false : showPassword = true"
+                ></i>
               </div>
               <div class="form_error--msg" v-if="passwordValidation">Password is wrong!</div>
               <div
@@ -74,7 +79,8 @@ export default {
       username: "",
       usernameValidation: false,
       password: "",
-      passwordValidation: false
+      passwordValidation: false,
+      showPassword: false
     };
   },
   computed: {
