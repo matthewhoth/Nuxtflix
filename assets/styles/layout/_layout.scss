@@ -1,16 +1,15 @@
 $html_bg: $primary_color_dark;
-$scrollBar_color: #ffffff;
-$btn_color: #333333;
+$scrollBar_color: $primary_color_dark;
 
-html{
+html {
   background-color: $html_bg;
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;
 }
 
 *::-webkit-scrollbar {
-  width: .8rem;
-  height: .8rem;
+  width: 0.8rem;
+  height: 0.8rem;
 }
 
 *::-webkit-scrollbar-track {
@@ -18,8 +17,8 @@ html{
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: darken($scrollBar_color, 30%);
-  border: .2rem solid $scrollBar_color;
+  background-color: darken($primary_color_dark, 5%);
+  border: 0.2rem solid $scrollBar_color;
   @include border-radius(1rem);
 }
 
@@ -35,17 +34,19 @@ html{
 
 // EDIT MODE
 
-.image_container{
+.image_container {
   position: relative;
 }
-
-.image_upload{
+.disableOverflow {
+  overflow: hidden;
+}
+.image_upload {
   position: absolute;
   right: 0;
   left: 0;
   top: -6rem;
   text-align: center;
-  label{
+  label {
     padding: 1rem 2rem;
     background-color: $btn_color;
     font-weight: 600;
@@ -55,7 +56,7 @@ html{
     position: relative;
     @include border-radius(5px);
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       right: 40%;
@@ -67,11 +68,11 @@ html{
       margin-left: -10px;
       margin-bottom: -10px;
     }
-    &:hover{
+    &:hover {
       background-color: $primary_active_color;
     }
   }
-  input{
+  input {
     visibility: hidden;
     display: none;
   }

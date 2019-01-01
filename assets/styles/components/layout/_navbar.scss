@@ -59,17 +59,24 @@ $text_light: $primary_color_light;
     }
   }
   &--dropdown {
-    background-color: darken($navbar_bg, 5%);
+    background-color: darken($navbar_bg, 2%);
     color: $text_light;
-    padding: 1rem 2rem;
     z-index: $z_index-dropdown;
+    @media only screen and (max-width: 468px) {
+      width: 100%;
+      @include border-radius(0 0 5px 5px);
+    }
     @include border-radius(0 0 0 5px);
     @include fullscreen(absolute, 5rem, 0);
     &-inner {
       ul {
         li {
+          padding: 1rem 2rem;
           line-height: 2rem;
           margin: 0.5rem 0;
+          &:last-child {
+            margin-bottom: 0;
+          }
           a {
             font-size: 1.2rem;
             @include fontMedium;
@@ -77,6 +84,24 @@ $text_light: $primary_color_light;
               margin-right: 0.5rem;
             }
           }
+        }
+      }
+      &-logOut {
+        background-color: $secondary_color_dark;
+        padding: 0;
+        position: relative;
+        text-align: center;
+        @include border-radius(0 0 0 5px);
+        @media only screen and (max-width: 468px) {
+          @include border-radius(0 0 5px 5px);
+        }
+        &:hover {
+          background-color: lighten($secondary_color_dark, 10%);
+        }
+        a {
+          text-align: center;
+          color: $text_dark;
+          font-weight: 600 !important;
         }
       }
     }
