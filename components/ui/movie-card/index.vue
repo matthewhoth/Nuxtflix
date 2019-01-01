@@ -155,6 +155,10 @@ export default {
   }
   input {
     padding-left: 2rem;
+    @include fontMedium;
+    &::placeholder {
+      color: $primary_color_light;
+    }
     @media only screen and (max-width: 468px) {
       width: 100%;
     }
@@ -164,6 +168,9 @@ export default {
     align-items: center;
     @include fullscreen(absolute, 0, initial, 0, 0);
   }
+}
+input:focus + i {
+  color: $secondary_color_dark;
 }
 .no_result {
   width: 100%;
