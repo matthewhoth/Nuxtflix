@@ -35,7 +35,15 @@
             <div class="navbar_links--dropdown-inner">
               <ul>
                 <li>
-                  <a class="click click_link click_link--color-light" @click="onLogout()">
+                  <a class="click click_link click_link--color-light">
+                    <i class="icon-star"></i>What movies I have rated?
+                  </a>
+                </li>
+                <li
+                  class="navbar_links--dropdown-inner-logOut click click_link"
+                  @click="onLogout()"
+                >
+                  <a>
                     <i class="icon-download"></i>Log Out
                   </a>
                 </li>

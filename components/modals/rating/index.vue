@@ -49,9 +49,13 @@ export default {
   },
   computed: {},
   mounted() {
+    document.body.classList.add("disableOverflow");
     setTimeout(() => {
       this.$emit("closeRatingModal");
     }, 2500);
+  },
+  destroyed() {
+    document.body.classList.remove("disableOverflow");
   },
   methods: {
     onClickOutisde() {

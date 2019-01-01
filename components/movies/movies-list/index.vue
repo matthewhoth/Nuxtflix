@@ -81,7 +81,10 @@ export default {
 @import "~assets/styles/variables/colors";
 @import "~assets/styles/helpers/mixins";
 .movies_premium {
-  padding-top: 2rem;
+  padding-top: 2rem; 
+  @media only screen and (max-width: 468px) {
+      display: none;
+    }
   img {
     @include border-radius(5px);
   }
