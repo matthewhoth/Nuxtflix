@@ -3,7 +3,8 @@ import Cookies from "js-cookie";
 export const state = () => ({
   accountDetails: [],
   user: "",
-  moviesList: []
+  moviesList: [],
+  rateMoviesModalState: false
 });
 
 export const mutations = {
@@ -13,6 +14,10 @@ export const mutations = {
 
   SET_USER(state, user) {
     state.user = user;
+  },
+
+  SET_RATE_MOVIES_MODAL(state, modalState) {
+    state.rateMoviesModalState = modalState;
   },
 
   SET_MOVIES(state, moviesList) {
@@ -41,6 +46,10 @@ export const actions = {
   async setUser({ commit }, user) {
     Cookies.set("user", user, { expires: 365 });
     commit("SET_USER", user);
+  },
+
+  async setRateMoviesModal({ commit }, modalState) {
+    commit("SET_RATE_MOVIES_MODAL", modalState);
   },
 
   async setMovies({ commit }, movies) {
