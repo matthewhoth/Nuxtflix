@@ -154,6 +154,7 @@ export default {
     width: 100%;
   }
   input {
+    min-width: 200px;
     padding-left: 2rem;
     @include fontMedium;
     &::placeholder {
@@ -212,6 +213,7 @@ input:focus + i {
     @include transition(transform 1s);
     @include border-radius(5px);
     .front {
+      border: 1px solid rgba(80, 100, 124, 0.4);
       backface-visibility: hidden;
       background: darken($primary_color_dark, 5%);
       color: $primary_color_light;
@@ -247,6 +249,7 @@ input:focus + i {
       }
     }
     .back {
+      border: 1px solid rgba(80, 100, 124, 0.4);
       backface-visibility: hidden;
       color: $primary_color_light;
       background: darken($primary_color_dark, 5%);

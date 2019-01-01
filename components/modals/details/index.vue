@@ -109,7 +109,6 @@
 </template>
 
 <script>
-import Cookies from "js-cookie";
 import clickOutside from "@/directives/clickOutside";
 export default {
   directives: {

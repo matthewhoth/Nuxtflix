@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div class="movies_premium">
-      <img :src="`${$imageUrl()}/banner.jpg`" alt>
-    </div>
-
     <movieCard
       :movies="$store.state.moviesList"
       @rateMovie="onRateMovie"
@@ -81,10 +77,10 @@ export default {
 @import "~assets/styles/variables/colors";
 @import "~assets/styles/helpers/mixins";
 .movies_premium {
-  padding-top: 2rem; 
+  padding-top: 2rem;
   @media only screen and (max-width: 468px) {
-      display: none;
-    }
+    display: none;
+  }
   img {
     @include border-radius(5px);
   }

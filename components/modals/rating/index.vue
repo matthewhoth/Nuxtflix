@@ -72,7 +72,7 @@ export default {
 @import "~assets/styles/helpers/mixins";
 //@import "~assets/styles/layout/typography";
 .modal_overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .ratingStar_box {
