@@ -35,7 +35,10 @@
             <div class="navbar_links--dropdown-inner">
               <ul>
                 <li>
-                  <a class="click click_link click_link--color-light">
+                  <a
+                    @click="openRatedMoviesModal()"
+                    class="click click_link click_link--color-light"
+                  >
                     <i class="icon-star"></i>What movies I have rated?
                   </a>
                 </li>
@@ -58,7 +61,6 @@
 
 <script>
 import clickOutside from "@/directives/clickOutside";
-
 export default {
   directives: {
     clickOutside
@@ -68,7 +70,6 @@ export default {
       profileDropdown: false
     };
   },
-
   methods: {
     onLogout() {
       this.$store.dispatch("userLogout");
@@ -79,6 +80,9 @@ export default {
         type: "info"
       });
       this.onClickOutside();
+    },
+    openRatedMoviesModal() {
+      this.$store.dispatch("setRateMoviesModal", true);
     },
     onClickOutside() {
       this.profileDropdown = false;
