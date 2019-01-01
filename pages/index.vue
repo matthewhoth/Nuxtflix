@@ -22,6 +22,9 @@
             <moviesList/>
           </div>
         </div>
+        <transition name="fade">
+          <ratedMovies v-if="$store.state.rateMoviesModalState"/>
+        </transition>
       </div>
     </no-ssr>
   </div>
@@ -29,9 +32,9 @@
 
 <script>
 import moviesList from "@/components/movies/movies-list";
-
+import ratedMovies from "@/components/modals/user/rated-movies";
 export default {
-  components: { moviesList },
+  components: { moviesList, ratedMovies },
   data() {
     return {};
   },
