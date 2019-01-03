@@ -80,8 +80,5 @@ dist
 # IDE
 .idea
 
-# Images
-
-static
 
 sw.*
