@@ -5,7 +5,7 @@
 //@import "~assets/styles/layout/typography";
 
 $navbar_bg: darken($primary_color_dark, 5%);
-$login_bg: $secondary_color_dark;
+$login_bg: $primary_color_text;
 $text_dark: $primary_color_dark;
 $text_light: $primary_color_light;
 
@@ -39,7 +39,7 @@ $text_light: $primary_color_light;
   }
   .login {
     color: $text_dark;
-    background-color: $login_bg;
+    background-color: lighten($login_bg, 10%);
     padding: 0 2rem;
     text-transform: uppercase;
     @include fontSemiBold;

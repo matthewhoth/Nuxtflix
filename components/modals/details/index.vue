@@ -148,7 +148,11 @@ export default {
 //@import "~assets/styles/layout/typography";
 .movie_details--trailer {
 }
+.click_link--color-link {
+  color: $secondary_color_light;
+}
 .movie_details--about {
+  color: $primary_color_text;
   padding: 2rem;
 }
 </style>

@@ -1,13 +1,14 @@
-$primary_color_dark: #1f2733;
-$primary_color_light: lighten(#1f2733, 50%);
+$primary_color_dark: #484848;
+$primary_color_light: rgba(77, 169, 183, 0.75);
+$primary_color_text: #ced1cc;
 
-$secondary_color_dark: #1abc9c;
-$secondary_color_light: #ffb648;
+$secondary_color_dark: #4da9b7;
+$secondary_color_light: #ff5a5f;
+$secondary_color_text: #000;
 
 $primary_active_color: dodgerblue;
 
-$state_error_color: #E54D42;
+$state_error_color: #e54d42;
 $state_warning_color: #ffb648;
-$state_info_color: #1E90FF;
+$state_info_color: #1e90ff;
 $state_success_color: #1abc9c;
-

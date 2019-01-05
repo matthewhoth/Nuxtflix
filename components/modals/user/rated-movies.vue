@@ -7,7 +7,7 @@
         v-click-outside="onClickOutside"
       >
         <div class="form_header">
-          <div class="form_header--title">List of movies that I have rated</div>
+          <div class="form_header--title">Rated Movies</div>
           <div class="modal_close">
             <i
               class="icon-circle-rounded-full click click_link"
@@ -39,7 +39,7 @@
           <div
             v-if="ratedMoviesList.length === 0"
             class="text--align-center"
-          >You did not rate any movies yet!</div>
+          >You have not rated any movies yet!</div>
         </div>
       </div>
     </div>
@@ -90,6 +90,10 @@ export default {
 //@import "~assets/styles/layout/typography";
 .ratedMovies_list--container {
   padding: 2rem;
+  color: $secondary_color_light;
+}
+.modal_container {
+  background-color: darken(#484848, 10%);
 }
 .ratedMovies_list {
   display: flex;

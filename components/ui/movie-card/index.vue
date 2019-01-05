@@ -19,6 +19,7 @@
         class="movies_cards"
         @mouseover="frontNumber = movie.id"
         @mouseleave="frontNumber = null"
+        tabindex="0"
       >
         <div class="flip">
           <div class="front" :class="{'front--hide': frontNumber === movie.id}">
@@ -251,8 +252,8 @@ input:focus + i {
     .back {
       border: 1px solid rgba(80, 100, 124, 0.4);
       backface-visibility: hidden;
-      color: $primary_color_light;
-      background: darken($primary_color_dark, 5%);
+      color: darken($secondary_color_light, 5%);
+      background: darken($primary_color_dark, 20%);
       width: 100%;
       padding: 2rem;
       display: flex;

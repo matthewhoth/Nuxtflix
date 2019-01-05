@@ -1,5 +1,5 @@
 $form_header_bg: $secondary_color_dark;
-$text_dark: $primary_color_dark;
+$text_dark: $secondary_color_text;
 
 .form_error--msg {
   color: $state_error_color;
@@ -49,6 +49,7 @@ $text_dark: $primary_color_dark;
   }
   .icon-eye {
     font-size: 1.2rem;
+    margin-right: 20px;
     @include fullscreen(absolute, initial, 1rem, 1rem);
   }
 }
