@@ -18,7 +18,7 @@
           @click="profileDropdown ? profileDropdown = false : profileDropdown = true"
         >
           <img
-            :src="`${$imageUrl()}/avatar.jpg`"
+            :src="`${$imageUrl()}/avatar.png`"
             class="avatar avatar--inline avatar--small avatar--align-middle avatar--rounded"
           >
           <span class="navbar_links--username-arrow">

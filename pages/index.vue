@@ -1,5 +1,9 @@
 <template>
-  <div class="moviesBg">
+  <div>
+    <div
+      class="moviesBg"
+      :style="{'background-image': 'url(' + require('../static/images/bg.png') + ')'}"
+    ></div>
     <no-ssr>
       <div v-if="!$store.state.user" id="welcome">
         <div>
