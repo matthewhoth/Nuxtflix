@@ -53,7 +53,7 @@
             <div class="form_control">
               <div class="form_box">
                 <input
-                  type="password"
+                  :type="showPassword ? 'text' : 'password'"
                   id="repassword"
                   v-model="repassword"
                   :class="{'focus': repassword.length > 0}"
@@ -131,3 +131,19 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+@import "~assets/styles/variables/colors";
+@import "~assets/styles/helpers/mixins";
+.form_header {
+  background: #fff;
+  color: #484848;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(235, 235, 235);
+  border-radius: 4px;
+}
+.form_group {
+  color: $primary_color_text;
+}
+</style>
