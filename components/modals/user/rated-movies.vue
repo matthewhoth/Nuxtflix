@@ -18,14 +18,14 @@
         <div class="ratedMovies_list--container">
           <div v-for="list of ratedMoviesList" :key="list.id" class="ratedMovies_list">
             <div class="ratedMovies_list--image">
-              <img :src="`${$imageUrl()}/movies/${list.image}`" :alt="list.name">
+              <img :src="`https://image.tmdb.org/t/p/w500${list.poster_path}`" :alt="list.title">
             </div>
             <div>
               <div class="ratedMovies_list--name">{{list.name}}</div>
               <div class="ratedMovies_list--rating">
                 <span>
                   <i class="icon-star margin_add--right-1"></i>
-                  {{list.rating}} {{list.rating === 1 ? 'star' : 'stars'}}
+                  You've given this movie {{list.rating}} {{list.rating === 1 ? 'star' : 'stars'}}
                 </span>
               </div>
               <div class="ratedMovies_list--rating-unrate">
