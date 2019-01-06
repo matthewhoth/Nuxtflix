@@ -56,7 +56,6 @@ export default {
       this.updateMovie(data.id, "rating", data.rating);
       this.ratingModalState = true;
       this.rating = data.rating;
-      this.fetchData();
     },
     updateMovie(id, propName, value) {
       let data = {
