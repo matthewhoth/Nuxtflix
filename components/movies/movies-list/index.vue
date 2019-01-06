@@ -56,6 +56,7 @@ export default {
       this.updateMovie(data.id, "rating", data.rating);
       this.ratingModalState = true;
       this.rating = data.rating;
+      this.fetchData();
     },
     updateMovie(id, propName, value) {
       let data = {
@@ -77,10 +78,13 @@ export default {
           "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=198c27d36e884f8226446016f0cfc7e4&append_to_response=videos"
         );
         const movies = await res.json();
-        movies.results = movies.results.map(obj => ({
-          ...obj,
-          rating: 0
-        }));
+        movies.results = await Promise.all(
+          movies.results.map(async obj => ({
+            ...obj,
+            rating: 0,
+            id: await this.fetchVideo2(obj.id)
+          }))
+        );
 
         this.moviesList = movies.results;
       } catch (e) {
@@ -91,15 +95,19 @@ export default {
     },
     fetchVideo() {
       console.log("example  here");
+    },
+    fetchVideo2: async function(id) {
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}/videos?api_key=198c27d36e884f8226446016f0cfc7e4&language=en-US`
+        );
+        const movies = await res.json();
+        const result = await movies.results[0].key;
+        return result;
+      } catch (e) {
+        console.log(e);
+      }
     }
-    /* fetchVideo2: async function() {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/movie/404368/videos?api_key=198c27d36e884f8226446016f0cfc7e4&language=en-US`
-      );
-      const movies = await res.json();
-      const result = await movies.results[0].key;
-      return result;
-    } */
   }
 };
 </script>

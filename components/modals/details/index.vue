@@ -16,11 +16,11 @@
           </div>
         </div>
         <div>
-          <div class="movie_details--trailer" v-if="movieData.video">
+          <div class="movie_details--trailer" v-if="movieData.id">
             <iframe
               width="100%"
               height="250"
-              :src="`https://www.youtube-nocookie.com/embed/`"
+              :src="`https://www.youtube-nocookie.com/embed/${movieData.id}`"
               frameborder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
@@ -51,7 +51,7 @@
                 <strong>Average Rating</strong>
               </div>
               <div>
-                <span>{{movieData.vote_average}}/////{{movieData.id}}</span>
+                <span>{{movieData.vote_average}}</span>
               </div>
             </div>
             <div class="margin_add--top-1" v-if="movieData.rating">
