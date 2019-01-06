@@ -23,10 +23,10 @@
       >
         <div class="flip">
           <div class="front" :class="{'front--hide': frontNumber === movie.id}">
-            <img :src="`${$imageUrl()}/movies/${movie.image}`" :alt="movie.name">
+            <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title">
             <div class="front_cover">
               <div>
-                <div class="movie_name">{{movie.name}} ({{movie.year}})</div>
+                <div class="movie_name">{{movie.title}} ({{movie.release_date}})</div>
                 <div class="movie_rating">
                   <i class="icon-star"></i>
                   {{movie.rating === 0 ? 'No rating' : movie.rating}}
@@ -45,12 +45,18 @@
               class="icon-info click click_link click_link--color-light"
             ></i>
             <div class="back_cover">
-              <img :src="`${$imageUrl()}/movies/${movie.image}`" :alt="movie.name">
+              <img
+                :src="`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`"
+                :alt="movie.title"
+              >
             </div>
             <div>
-              <div class="movie_name text--align-center">{{movie.name}} ({{movie.year}})</div>
+              <div class="movie_name text--align-center">{{movie.title}} ({{movie.release_date}})</div>
               <div class="movie_cover">
-                <img :src="`${$imageUrl()}/movies/${movie.image}`" :alt="movie.name">
+                <img
+                  :src="`https://image.tmdb.org/t/p/w185${movie.poster_path}`"
+                  :alt="movie.title"
+                >
               </div>
               <div class="movie_rate">Rate movie</div>
               <div class="display_flex display_flex--alignItems-center">
@@ -100,7 +106,7 @@ export default {
   computed: {
     filteredList() {
       return this.movies.filter(obj => {
-        return obj.name.toLowerCase().includes(this.keyword.toLowerCase());
+        return obj.title.toLowerCase().includes(this.keyword.toLowerCase());
       });
     }
   },
